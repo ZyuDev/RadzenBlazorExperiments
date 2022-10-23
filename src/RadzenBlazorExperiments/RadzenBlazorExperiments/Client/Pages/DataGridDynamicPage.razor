@@ -1,0 +1,23 @@
+﻿@page "/DataGridDynamic"
+
+<div class="row">
+    <div class="col-sm-6">
+
+        <RadzenDataGrid Data="@_data" TItem="IDictionary<string, object>" Style="max-height:500px;">
+            <Columns>
+                @foreach (var column in _columns)
+                {
+                    <RadzenDataGridColumn TItem="IDictionary<string, object>" Title="@column.Key" Type="column.Value"
+                                      Property="@GetColumnPropertyExpression(column.Key)">
+                        <Template>
+                            @context[@column.Key]
+                        </Template>
+                    </RadzenDataGridColumn>
+                }
+            </Columns>
+        </RadzenDataGrid>
+
+    </div>
+</div>
+
+
