@@ -1,0 +1,78 @@
+﻿@page "/editorexperiments"
+<h3>EditorExperimentalPage</h3>
+
+<div class="row">
+    <h5>Text Editor</h5>
+
+    <div class="col-sm-12">
+
+        <RadzenHtmlEditor @bind-Value=@_text
+                          style="margin-bottom: 1rem; min-height: 150px;"
+                          UploadUrl="upload/image"
+                          Change=@OnChange
+                          Paste=@OnPaste
+                          Execute=@OnExecute>
+            <RadzenHtmlEditorUndo/>
+            <RadzenHtmlEditorRedo/>
+            <RadzenHtmlEditorSeparator/>
+            <RadzenHtmlEditorBold/>
+            <RadzenHtmlEditorItalic/>
+            <RadzenHtmlEditorUnderline/>
+            <RadzenHtmlEditorStrikeThrough/>
+            <RadzenHtmlEditorSeparator/>
+            <RadzenHtmlEditorColor/>
+            <RadzenHtmlEditorBackground/>
+            <RadzenHtmlEditorRemoveFormat/>
+        </RadzenHtmlEditor>
+
+    </div>
+</div>
+
+<hr/>
+<div class="row">
+    <h5>HTML Editor</h5>
+
+    <div class="col-sm-12">
+        <RadzenHtmlEditor @bind-Value=@_text
+                          style="margin-bottom: 1rem; min-height: 150px;"
+                          UploadUrl="upload/image"
+                          Change=@OnChange
+                          Paste=@OnPaste
+                          Execute=@OnExecute>
+           <RadzenHtmlEditorUndo />
+           <RadzenHtmlEditorRedo />
+           <RadzenHtmlEditorSeparator />
+           <RadzenHtmlEditorBold />
+           <RadzenHtmlEditorItalic />
+           <RadzenHtmlEditorUnderline />
+           <RadzenHtmlEditorStrikeThrough />
+           <RadzenHtmlEditorSeparator />
+           <RadzenHtmlEditorAlignLeft />
+           <RadzenHtmlEditorAlignCenter />
+           <RadzenHtmlEditorAlignRight />
+           <RadzenHtmlEditorJustify />
+           <RadzenHtmlEditorSeparator />
+           <RadzenHtmlEditorIndent />
+           <RadzenHtmlEditorOutdent />
+           <RadzenHtmlEditorUnorderedList />
+           <RadzenHtmlEditorOrderedList />
+           <RadzenHtmlEditorSeparator />
+           <RadzenHtmlEditorColor />
+           <RadzenHtmlEditorBackground />
+           <RadzenHtmlEditorRemoveFormat />
+           <RadzenHtmlEditorSeparator />
+           <RadzenHtmlEditorSubscript />
+           <RadzenHtmlEditorSuperscript />
+           <RadzenHtmlEditorSeparator />
+           <RadzenHtmlEditorFontName />
+           <RadzenHtmlEditorFontSize />
+           <RadzenHtmlEditorFormatBlock />
+        </RadzenHtmlEditor>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <RadzenTextArea class="form-control form-control-sm" @bind-Value="@_text" Rows="5"></RadzenTextArea>
+    </div>
+</div>
