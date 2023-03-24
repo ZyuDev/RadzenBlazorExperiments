@@ -1,0 +1,60 @@
+﻿@page "/SheetExperimentalPage"
+@using RadzenBlazorExperiments.Client.Models
+
+<h5>SheetExperimentalPage</h5>
+<hr/>
+
+<div class="row">
+    <div class="com-sm-12">
+        <RadzenDataGrid Data="@_sheet" 
+                        TItem="SheetRow" 
+                        AllowAlternatingRows="false"
+                        Style="max-height:500px; max-width: 1200px" 
+                        CellClick="OnCellClick" 
+                        CellRender="OnCellRender" >
+            <Columns>
+                <RadzenDataGridColumn TItem="SheetRow"
+                                      Title=""
+                                      Type="typeof(string)" 
+                                      Width="50px" 
+                                      Frozen="true">
+                    
+                    <Template Context="row">
+                        <span>@RowNumber(row)</span>
+                    </Template>
+                    
+                </RadzenDataGridColumn>
+                
+                @foreach (var column in _columns)
+                {
+                    <RadzenDataGridColumn TItem="SheetRow"
+                                          Title="@column.Title"
+                                          Type="typeof(string)" 
+                                          Width="@column.Width" 
+                                          Property="@column.ColumnNumber.ToString()">
+                        
+                        <Template Context="row">
+                            @if (IsCellEditing(row, column))
+                            {
+                                <input type="text" 
+                                       autocomplete="off"
+                                       style="width:100%"
+                                       @onchange="(e => OnValueChange(e))"
+                                       @onkeydown="OnInputKeyDown"
+                                       value="@GetCell(row, column)?.Text" />
+                                                                                                                           
+                            }
+                            else
+                            {
+                                <div tabindex="0" @onkeydown="OnKeyDown">@GetCell(row, column)?.Text</div>
+                            }
+                        </Template>
+                        
+                    </RadzenDataGridColumn>
+                }
+
+            </Columns>
+        </RadzenDataGrid>
+    </div>
+</div>
+
