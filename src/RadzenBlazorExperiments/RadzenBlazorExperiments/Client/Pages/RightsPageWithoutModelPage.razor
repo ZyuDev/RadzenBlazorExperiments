@@ -1,0 +1,53 @@
+﻿@page "/rightsPageWithoutModel"
+@using RadzenBlazorExperiments.Shared.Models
+<h3>RightsPageWithoutModelPage</h3>
+
+<hr/>
+
+<div class="row">
+    <div class="col-sm-1">
+        <RadzenButton Variant="Variant.Outlined"
+                      ButtonStyle="ButtonStyle.Secondary"
+                      Text="Add"
+                      Click="OnAddClick">
+        </RadzenButton>
+    </div>
+
+</div>
+
+<div class="row" style="margin-top:5px;">
+    <div class="col-sm-6">
+
+        <RadzenDataGrid @ref="_dataGrid" Data="@_rights" TItem="RightsRow" Style="max-height:500px;">
+            <Columns>
+                 <RadzenDataGridColumn TItem="RightsRow" 
+                                  Width="200px" 
+                                  Title="Object name" 
+                                  Property="ObjectName"></RadzenDataGridColumn>
+            </Columns>
+           
+        </RadzenDataGrid>
+
+    </div>
+
+    <div class="col-sm-6">
+
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <td>Object name</td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var row in _rights)
+            {
+                <tr>
+                    <td>@row.ObjectName</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>

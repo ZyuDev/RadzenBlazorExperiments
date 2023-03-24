@@ -1,0 +1,132 @@
+﻿@page "/rightsPage"
+@using RadzenBlazorExperiments.Shared.Models
+@using System.Data
+
+<h3>RightsPage</h3>
+<hr/>
+
+<div class="row">
+    <div class="col-sm-1">
+        <RadzenButton Variant="Variant.Outlined"
+                      ButtonStyle="ButtonStyle.Secondary"
+                      Text="Add"
+                      Click="OnAddClick">
+        </RadzenButton>
+
+    </div>
+
+    <div class="col-sm-1">
+        <RadzenButton Variant="Variant.Outlined"
+                      ButtonStyle="ButtonStyle.Secondary"
+                      Text="Check all"
+                      Click="(e => _model.CheckAll())">
+        </RadzenButton>
+
+
+    </div>
+
+    <div class="col-sm-2">
+        <RadzenButton Variant="Variant.Outlined"
+                      ButtonStyle="ButtonStyle.Secondary"
+                      Text="Uncheck all"
+                      Click="(e => _model.UnCheckAll())">
+        </RadzenButton>
+    </div>
+
+</div>
+
+<div class="row" style="margin-top:5px;">
+    <div class="col-sm-6">
+
+        <RadzenDataGrid @ref="_dataGrid" 
+                        Data="@_model.Rights" 
+                        TItem="RightsRow"
+                        AllowVirtualization="false"
+                        Style="max-height:500px;">
+            <Columns>
+                <RadzenDataGridColumn TItem="RightsRow" Width="200" Title="Object" Property="ObjectName"></RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="RightsRow" Width="100" Title="Read">
+                    <HeaderTemplate>
+                        <div>
+                            <div>Read</div>
+                            <div style="font-size:14px;">
+                                <a href="#" @onclick="(e => _model.ColumnCheck(1))" @onclick:preventDefault>
+                                    <span class="oi oi-check"></span>
+                                </a>
+                                <a href="#" @onclick="(e => _model.ColumnUnCheck(1))" @onclick:preventDefault>
+                                    <span class="oi oi-ban text-danger"></span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </HeaderTemplate>
+                    <Template Context="row">
+                        <RadzenCheckBox TValue="bool" @bind-Value="@row.AllowRead"></RadzenCheckBox>
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="RightsRow" Width="100" Title="Insert">
+                    <Template Context="row">
+                        <RadzenCheckBox TValue="bool" @bind-Value="@row.AllowInsert"></RadzenCheckBox>
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="RightsRow" Width="100" Title="Update">
+                    <Template Context="row">
+                        <RadzenCheckBox TValue="bool" @bind-Value="@row.AllowUpdate"></RadzenCheckBox>
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="RightsRow" Width="100" Title="Delete">
+                    <Template Context="row">
+                        <RadzenCheckBox TValue="bool" @bind-Value="@row.AllowDelete"></RadzenCheckBox>
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="RightsRow" Width="100" Title="Attached files">
+                    <Template Context="row">
+                        <RadzenCheckBox TValue="bool" @bind-Value="@row.AllowAttachedFiles"></RadzenCheckBox>
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+
+    </div>
+
+    <div class="col-sm-6">
+
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <td>Object name</td>
+                <td>Read</td>
+                <td>Insert</td>
+                <td>Update</td>
+                <td>Delete</td>
+                <td>Attached files</td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var row in _model.Rights)
+            {
+                <tr>
+                    <td>@row.ObjectName</td>
+                    <td>
+                        <RadzenCheckBox TValue="bool" @bind-Value="@row.AllowRead"></RadzenCheckBox>
+                    </td>
+                    <td>
+                        <RadzenCheckBox TValue="bool" @bind-Value="@row.AllowInsert"></RadzenCheckBox>
+                    </td>
+                    <td>
+                        <RadzenCheckBox TValue="bool" @bind-Value="@row.AllowUpdate"></RadzenCheckBox>
+                    </td>
+                    <td>
+                        <RadzenCheckBox TValue="bool" @bind-Value="@row.AllowDelete"></RadzenCheckBox>
+                    </td>
+                    <td>
+                        <RadzenCheckBox TValue="bool" @bind-Value="@row.AllowAttachedFiles"></RadzenCheckBox>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
